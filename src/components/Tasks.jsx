@@ -23,9 +23,13 @@ const Tasks = () => {
 
   const updateTaskStatus = (id) => {
     const task = tasks.find((task) => task.id === id);
-    console.log("the task id is " + task.id + "\n passed in task id is " + id);
     task.isCompleted = !task.isCompleted;
     setTasks([...tasks]);
+  };
+
+  const deleteTask = (id) => {
+    const filteredTasks = tasks.filter((task) => task.id !== id);
+    setTasks(filteredTasks);
   };
 
   return (
@@ -40,6 +44,7 @@ const Tasks = () => {
         tasks={tasks}
         visibility={visibility}
         updateTaskStatus={updateTaskStatus}
+        deleteTask={deleteTask}
       />
     </div>
   );

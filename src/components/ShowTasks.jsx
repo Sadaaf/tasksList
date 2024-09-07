@@ -1,4 +1,4 @@
-const ShowTasks = ({ tasks, visibility, updateTaskStatus }) => {
+const ShowTasks = ({ tasks, visibility, updateTaskStatus, deleteTask }) => {
   const filteredTasks = tasks.filter((task) => {
     if (visibility === "running") {
       return !task.isCompleted;
@@ -16,8 +16,11 @@ const ShowTasks = ({ tasks, visibility, updateTaskStatus }) => {
           <ul>
             {filteredTasks.map((task) => (
               <li key={task.id}>
-                {task.name}{" "}
-                <button onClick={()=> updateTaskStatus(task.id)}>{task.isCompleted ? "COMPLETED" : "RUNNING"}</button>
+                {task.name}
+                <button onClick={() => updateTaskStatus(task.id)}>
+                  {task.isCompleted ? "COMPLETED" : "RUNNING"}
+                </button>
+                <button onClick={() => deleteTask(task.id)}>Delete</button>
               </li>
             ))}
           </ul>
